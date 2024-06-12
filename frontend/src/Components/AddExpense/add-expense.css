@@ -1,0 +1,47 @@
+.input_form {
+    box-shadow: rgba(0,0,0,0.2) 2px 4px 8px 2px;
+}
+
+.cross{
+    cursor: pointer;
+}
+
+.input_feild{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.input_feild label{
+    font-size: 12px;
+    font-weight: 500;
+    color: #606060;
+}
+
+.input_feild input,.input_feild select{
+     height: 42px;
+     width: 320px;
+     border-radius: 6px;
+     border: 2px solid #E3EBFD;
+     font-size: 16px;
+     font-weight: 400;
+     /* cursor: pointer; */
+     color: #000000;
+     padding: 5px;
+}
+
+.input_feild input:focus,.input_feild select:focus{
+    outline: none;
+    border: 2px solid #5997ED;
+}
+
+.add{
+    background-color: #005FE4;
+    color: #fff;
+    height: 42px;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

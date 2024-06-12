@@ -1,0 +1,76 @@
+.register__main{
+    height: 100vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.register__container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #F0F0F0; 
+    padding: 20px 100px 20px 100px;
+    border-radius: 8px;
+
+}
+
+.register__container h2{
+    margin-bottom: 1rem;
+}
+
+.register__container input{
+    width:100%;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+}
+
+.register__container input:focus{
+    outline: none;
+}
+
+.register__btn{
+    width: 100%;
+    background: #005FE4;
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.register__container p{
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    text-align: center;
+
+}
+
+.register__container p a{
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: 500;
+}
+
+
+
+@media (max-width: 600px){
+
+    .register__container{
+        padding: 20px 30px 0px 30px;
+       
+    }
+    .register__container input{
+        font-size: 0.7rem;
+    }
+    .register__container p{
+        font-size: 0.7rem;
+    
+    }
+    .register__btn{
+        padding: 6px;
+        font-size: 14px;
+    }
+}
