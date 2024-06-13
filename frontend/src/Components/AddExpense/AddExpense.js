@@ -16,8 +16,8 @@ const AddExpense = ({setAddExpense}) => {
         user_id: user._id,
         title: undefined,
         amount: undefined,
-        category: 'Essential',
-        subcategory: 'Food',
+        category: 'Select',
+        subcategory: 'Select',
         date: undefined
     });
 
@@ -90,8 +90,10 @@ const AddExpense = ({setAddExpense}) => {
                 <FormGroup className="input_feild">
                     <label htmlFor="category">Category</label>
                     <select id="category" name="category" value={formValues.category} onChange={handleChange} required>
+                        <option value="">Select</option>
                         <option value="Essential">Essential</option>
                         <option value="Non-Essential">Non-Essential</option>
+                        <option value="Savings-Investment">Savings-Investment</option>
                         <option value="Miscelaneous">Miscelaneous</option>
                     </select>
                 </FormGroup>
@@ -99,12 +101,51 @@ const AddExpense = ({setAddExpense}) => {
                 <FormGroup className="input_feild">
                     <label htmlFor="subcategory">Sub category</label>
                     <select id="subcategory" name="subcategory" value={formValues.subcategory} onChange={handleChange} required>
-                        <option value="Food">Food</option>
-                        <option value="Housing">Housing</option>
-                        <option value="Utilities">Utilities</option>
-                        <option value="Healthcare">Healthcare</option>
-                        <option value="Entertainment">Entertainment</option>
-                        <option value="Clothing">Clothing</option>
+                        <option value="">Select</option>
+                        {
+                            formValues.category==="Essential"?
+                            <>
+                            <option value="Food">Food</option>
+                            <option value="Housing">Housing</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Insurance">Insurance</option>
+                            <option value="Debt">Debt</option>
+                            <option value="Transportation">Transportation</option>
+                            </>
+                            :
+                            <></>
+                        }
+                        {
+                            formValues.category==="Non-Essential"?
+                            <>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Personalcare">Personal Care</option>
+                            </>
+                            :
+                            <></>
+                        }
+                         {
+                            formValues.category==="Savings-Investment"?
+                            <>
+                            <option value="Savings">Savings</option>
+                            <option value="Investment">Investment</option>
+                            </>
+                            :
+                            <></>
+                        }
+                        {
+                            formValues.category==="Miscelaneous"?
+                            <>
+                            <option value="Education">Education</option>
+                            <option value="Gifts">Gifts</option>
+                            <option value="Miscelaneous">Miscelaneous</option>
+                            </>
+                            :
+                            <></>
+                        }
+                
                     </select>
                 </FormGroup>
 

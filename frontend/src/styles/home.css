@@ -16,6 +16,7 @@
 .expense_right_section{
     box-shadow: rgba(0,0,0,0.2) 5px 5px 10px -2px;
     max-width: 400px;
+    min-width: 320px;
 }
 
 .donut_container{

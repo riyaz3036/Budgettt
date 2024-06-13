@@ -22,18 +22,28 @@ const Home = () =>{
     };
 
     //To store subcategory filters
-    const [food,setFood] = useState(false);
     const [housing,setHousing] = useState(false);
+    const [transportation,setTransportation] = useState(false);
+    const [food,setFood] = useState(false);
     const [utilities,setUtilities] = useState(false);
     const [healthcare,setHealthcare] = useState(false);
+    const [insurance,setInsurance] = useState(false);
+    const [debt,setDebt] = useState(false);
     const [entertainment,setEntertainment] = useState(false);
+    const [personalcare,setPersonalcare] = useState(false);
     const [clothing,setClothing] = useState(false);
+    const [savings,setSavings] = useState(false);
+    const [investment,setInvestment] = useState(false);
+    const [education,setEducation] = useState(false);
+    const [gifts,setGifts] = useState(false);
+    const [miscelaneous,setMiscelaneous] = useState(false);    
+    
 
     //To see if any subcategory is selected
     const [subCategory, setSubCategory] = useState(false);
     useEffect(() => {
-        setSubCategory(food || housing || utilities || healthcare || entertainment || clothing);
-      }, [food, housing, utilities, healthcare, entertainment, clothing]);
+        setSubCategory(food||housing||utilities||healthcare||entertainment||clothing||transportation||insurance||debt||personalcare||savings||investment||education||gifts||miscelaneous);
+      }, [food,housing,utilities,healthcare,entertainment,clothing,transportation,insurance,debt,personalcare,savings,investment,education,gifts,miscelaneous]);
 
     const handleSubCategory = () => {
         if(subCategory===true){
@@ -43,6 +53,15 @@ const Home = () =>{
             setHealthcare(false);
             setEntertainment(false);
             setClothing(false);
+            setTransportation(false);
+            setInsurance(false);
+            setDebt(false);
+            setPersonalcare(false);
+            setSavings(false);
+            setInvestment(false);
+            setEducation(false);
+            setGifts(false);
+            setMiscelaneous(false);
             setSubCategory(false);
         }
     };
@@ -113,7 +132,8 @@ const Home = () =>{
     let monthSum = {
         essential: 0,
         nonessential: 0,
-        miscelaneous: 0
+        miscelaneous: 0,
+        savingsinvestment: 0,
     };
 
     groupedExpenses.forEach(group => {
@@ -124,6 +144,9 @@ const Home = () =>{
               break;
             case 'Non-Essential':
               monthSum.nonessential += expense.amount;
+              break;
+            case 'Savings-Investment':
+              monthSum.savingsinvestment += expense.amount;
               break;
             case 'Miscelaneous':
               monthSum.miscelaneous += expense.amount;
@@ -159,7 +182,8 @@ const Home = () =>{
             date: formatDate(formattedCurrentDate), // Format the date as needed
             essential: 0,
             nonessential: 0,
-            miscellaneous: 0
+            miscelaneous: 0,
+            savingsinvestment: 0
         };
 
         // Calculate sums for the current day if expenses are found
@@ -172,8 +196,11 @@ const Home = () =>{
                 case 'Non-Essential':
                 daySum.nonessential += expense.amount;
                 break;
+                case 'Savings-Investment':
+                daySum.savingsinvestment += expense.amount;
+                break;
                 default:
-                daySum.miscellaneous += expense.amount;
+                daySum.miscelaneous += expense.amount;
                 break;
             }
             });
@@ -190,21 +217,40 @@ const Home = () =>{
     //to get different symbols for different sub categories
     function getSymbolForSubcategory(subcategory) {
         switch (subcategory.toLowerCase()) {
-          case 'food':
-            return <p className="text-4xl expense_right_section_element_logo">🍲</p>;
-          case 'housing':
-            return <p className="text-4xl expense_right_section_element_logo">🏠</p>;
-          case 'entertainment':
-            return <p className="text-4xl expense_right_section_element_logo">🎥</p>;
-          case 'utilities':
-            return <p className="text-4xl expense_right_section_element_logo">🔧</p>;
-          case 'healthcare':
-            return <p className="text-4xl expense_right_section_element_logo">⚕️</p>;
-          case 'clothing':
-            return <p className="text-4xl expense_right_section_element_logo">👕</p>;
-          
+            case 'food':
+                return <p className="text-4xl expense_right_section_element_logo">🍔</p>;
+            case 'housing':
+                return <p className="text-4xl expense_right_section_element_logo">🏠</p>;
+            case 'utilities':
+                return <p className="text-4xl expense_right_section_element_logo">💡</p>;
+            case 'healthcare':
+                return <p className="text-4xl expense_right_section_element_logo">⚕️</p>;
+            case 'entertainment':
+                return <p className="text-4xl expense_right_section_element_logo">🎉</p>;
+            case 'clothing':
+                return <p className="text-4xl expense_right_section_element_logo">👗</p>;
+            case 'transportation':
+                return <p className="text-4xl expense_right_section_element_logo">🚗</p>;
+            case 'insurance':
+                return <p className="text-4xl expense_right_section_element_logo">📑</p>;
+            case 'debt':
+                return <p className="text-4xl expense_right_section_element_logo">💳</p>;
+            case 'personalcare':
+                return <p className="text-4xl expense_right_section_element_logo">💅</p>;
+            case 'savings':
+                return <p className="text-4xl expense_right_section_element_logo">💰</p>;
+            case 'investment':
+                return <p className="text-4xl expense_right_section_element_logo">📈</p>;
+            case 'education':
+                return <p className="text-4xl expense_right_section_element_logo">🎓</p>;
+            case 'gifts':
+                return <p className="text-4xl expense_right_section_element_logo">🎁</p>;
+            case 'miscellaneous':
+                return <p className="text-4xl expense_right_section_element_logo">🛠️</p>;
+            default:
+                return null;
         }
-      }
+    }
       
 
     
@@ -226,8 +272,8 @@ return (
                             data={{
                                 datasets:[
                                     {
-                                        data: [monthSum.essential,monthSum.nonessential,monthSum.miscelaneous],
-                                        backgroundColor: ['#27AE60', '#F2C94C', '#BFC5D4'], 
+                                        data: [monthSum.essential,monthSum.nonessential,monthSum.savingsinvestment,monthSum.miscelaneous],
+                                        backgroundColor: ['#27AE60', '#F2C94C', '#A24857','#BFC5D4'], 
                                         borderWidth: 0,
                                         datalabels: {
                                             color: '#000000',
@@ -275,6 +321,13 @@ return (
                                 </div>
                             </div>
                             <div className="flex gap-5 py-1">
+                                <div className="h-8 w-8 rounded" style={{backgroundColor:'#A24857'}}></div>
+                                <div>
+                                    <p className="font-normal text-xs" style={{color: '#8695B7'}}>Savings and Investment</p>
+                                    <p className="font-medium text-base" style={{color: '#607093'}}>₹{monthSum.savingsinvestment}</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-5 py-1">
                                 <div className="h-8 w-8 rounded" style={{backgroundColor:'#BFC5D4'}}></div>
                                 <div>
                                     <p className="font-normal text-xs" style={{color: '#8695B7'}}>Miscelaneous</p>
@@ -300,6 +353,20 @@ return (
                                     backgroundColor: ['#27AE60'],
                                     order: 1
                                     
+                                },
+                                {
+                                    label:"Savings-Investment",
+                                    data: weeklySums.map(day => day.savingsinvestment),
+                                    backgroundColor: ['#A24857'],
+                                    borderRadius: 3,
+                                    order: 3
+                                },
+                                {
+                                    label:"Miscelaneous",
+                                    data: weeklySums.map(day => day.miscelaneous),
+                                    backgroundColor: ['#BFC5D4'],
+                                    borderRadius: 3,
+                                    order: 4
                                 },
                                 {
                                     label:"Non-Essentials",
@@ -378,25 +445,64 @@ return (
             
             {/* View all expenses (right) section */}
             <div className="p-5 rounded-2xl bg-white expense_right_section">
-                <div className="flex justify-between mb-2 expense_right_section_top">
+                <div className="flex gap-5 justify-between mb-2 expense_right_section_top">
                     <p className="text-lg font-bold">Transactions</p>
 
                     <select value={selectedCategory} onChange={handleCategory} className="text-sm font-normal cursor-pointer rounded-md">
                         <option value="All">All</option>
                         <option value="Essential">Essential</option>
                         <option value="Non-Essential">Non-Essential</option>
+                        <option value="Savings-Investment">Savings-Investment</option>
                         <option value="Miscelaneous">Miscelaneous</option>
                     </select>
                 </div>
 
                 <div className="flex flex-wrap gap-2 mb-5 subcat_filters">
                     <button onClick={handleSubCategory} style={{backgroundColor: subCategory?'#fff':'#005FE4',color: subCategory?'#000000':'#fff'}}>All</button>
-                    <button onClick={()=>{setFood(!food)}} style={{backgroundColor: food?'#005FE4':'#fff',color: food?'#fff':'#000000'}}>Food</button>
-                    <button onClick={()=>{setHousing(!housing)}} style={{backgroundColor: housing?'#005FE4':'#fff',color: housing?'#fff':'#000000'}}>Housing</button>
-                    <button onClick={()=>{setUtilities(!utilities)}} style={{backgroundColor: utilities?'#005FE4':'#fff',color: utilities?'#fff':'#000000'}}>Utilities</button>
-                    <button onClick={()=>{setHealthcare(!healthcare)}} style={{backgroundColor: healthcare?'#005FE4':'#fff',color: healthcare?'#fff':'#000000'}}>Healthcare</button>
-                    <button onClick={()=>{setEntertainment(!entertainment)}} style={{backgroundColor: entertainment?'#005FE4':'#fff',color: entertainment?'#fff':'#000000'}}>Entertainment</button>
-                    <button onClick={()=>{setClothing(!clothing)}} style={{backgroundColor: clothing?'#005FE4':'#fff',color: clothing?'#fff':'#000000'}}>Clothing</button>
+                    {
+                        selectedCategory==="All" || selectedCategory==="Essential"?
+                        <>
+                        <button onClick={() => setFood(!food)} style={{ backgroundColor: food ? '#005FE4' : '#fff', color: food ? '#fff' : '#000000' }}>Food</button>
+                        <button onClick={() => setHousing(!housing)} style={{ backgroundColor: housing ? '#005FE4' : '#fff', color: housing ? '#fff' : '#000000' }}>Housing</button>
+                        <button onClick={() => setUtilities(!utilities)} style={{ backgroundColor: utilities ? '#005FE4' : '#fff', color: utilities ? '#fff' : '#000000' }}>Utilities</button>
+                        <button onClick={() => setHealthcare(!healthcare)} style={{ backgroundColor: healthcare ? '#005FE4' : '#fff', color: healthcare ? '#fff' : '#000000' }}>Healthcare</button>
+                        <button onClick={() => setInsurance(!insurance)} style={{ backgroundColor: insurance ? '#005FE4' : '#fff', color: insurance ? '#fff' : '#000000' }}>Insurance</button>
+                        <button onClick={() => setDebt(!debt)} style={{ backgroundColor: debt ? '#005FE4' : '#fff', color: debt ? '#fff' : '#000000' }}>Debt</button>
+                        <button onClick={() => setTransportation(!transportation)} style={{ backgroundColor: transportation ? '#005FE4' : '#fff', color: transportation ? '#fff' : '#000000' }}>Transportation</button>
+                        </>
+                        :
+                        <></>
+                    }
+                    {
+                        selectedCategory==="All" || selectedCategory==="Non-Essential"?
+                        <>
+                        <button onClick={() => setEntertainment(!entertainment)} style={{ backgroundColor: entertainment ? '#005FE4' : '#fff', color: entertainment ? '#fff' : '#000000' }}>Entertainment</button>
+                        <button onClick={() => setClothing(!clothing)} style={{ backgroundColor: clothing ? '#005FE4' : '#fff', color: clothing ? '#fff' : '#000000' }}>Clothing</button>
+                        <button onClick={() => setPersonalcare(!personalcare)} style={{ backgroundColor: personalcare ? '#005FE4' : '#fff', color: personalcare ? '#fff' : '#000000' }}>Personal Care</button>
+                        </>
+                        :
+                        <></>
+                    }
+                    {
+                        selectedCategory==="All" || selectedCategory==="Savings-Investment"?
+                        <>
+                        <button onClick={() => setSavings(!savings)} style={{ backgroundColor: savings ? '#005FE4' : '#fff', color: savings ? '#fff' : '#000000' }}>Savings</button>
+                        <button onClick={() => setInvestment(!investment)} style={{ backgroundColor: investment ? '#005FE4' : '#fff', color: investment ? '#fff' : '#000000' }}>Investment</button>
+                        </>
+                        :
+                        <></>
+                    }
+                    {
+                        selectedCategory==="All" || selectedCategory==="Miscelaneous"?
+                        <>
+                        <button onClick={() => setEducation(!education)} style={{ backgroundColor: education ? '#005FE4' : '#fff', color: education ? '#fff' : '#000000' }}>Education</button>
+                        <button onClick={() => setGifts(!gifts)} style={{ backgroundColor: gifts ? '#005FE4' : '#fff', color: gifts ? '#fff' : '#000000' }}>Gifts</button>
+                        <button onClick={() => setMiscelaneous(!miscelaneous)} style={{ backgroundColor: miscelaneous ? '#005FE4' : '#fff', color: miscelaneous ? '#fff' : '#000000' }}>Miscelaneous</button>
+                        </>
+                        :
+                        <></>
+                    }
+
                 </div>
 
                 <div className="expense_right_section_main">
@@ -404,7 +510,10 @@ return (
                 {groupedExpenses.map(group => (
                 <div key={group.date}>
                     {group.expenses.some(expense =>
-                        ((selectedCategory==='All' || (selectedCategory===expense.category)) && (!subCategory || ((food && expense.subcategory==="Food")||(utilities && expense.subcategory==="Utilities")||(healthcare && expense.subcategory==="Healthcare")||(housing && expense.subcategory==="Housing")||(entertainment && expense.subcategory==="Entertainment")||(clothing && expense.subcategory==="Clothing"))) 
+                        ((selectedCategory==='All' || (selectedCategory===expense.category)) && 
+                        (!subCategory || ((food && expense.subcategory==="Food")||(utilities && expense.subcategory==="Utilities")||(healthcare && expense.subcategory==="Healthcare")||(housing && expense.subcategory==="Housing")||(entertainment && expense.subcategory==="Entertainment")||
+                        (clothing && expense.subcategory==="Clothing") || (transportation && expense.subcategory==="Transportation")||(insurance && expense.subcategory==="Insurance")||(debt && expense.subcategory==="Debt")||(personalcare && expense.subcategory==="Personalcare")||
+                        (savings && expense.subcategory==="Savings")||(investment && expense.subcategory==="Investment")||(education && expense.subcategory==="Education")||(gifts && expense.subcategory==="Gifts")||(miscelaneous && expense.subcategory==="Miscelaneous"))) 
                         )
                         ) ? 
                         <div className="font-normal text-sm py-2 expense_right_section_element_title" style={{ color: '#707070' }}>
@@ -416,7 +525,11 @@ return (
                     
                    {
                     group.expenses.map(expense => (
-                        (selectedCategory==='All' || (selectedCategory===expense.category)) && (!subCategory || ((food && expense.subcategory==="Food")||(utilities && expense.subcategory==="Utilities")||(healthcare && expense.subcategory==="Healthcare")||(housing && expense.subcategory==="Housing")||(entertainment && expense.subcategory==="Entertainment")||(clothing && expense.subcategory==="Clothing"))) ?
+                        ((selectedCategory==='All' || (selectedCategory===expense.category)) && 
+                        (!subCategory || ((food && expense.subcategory==="Food")||(utilities && expense.subcategory==="Utilities")||(healthcare && expense.subcategory==="Healthcare")||(housing && expense.subcategory==="Housing")||(entertainment && expense.subcategory==="Entertainment")||
+                        (clothing && expense.subcategory==="Clothing") || (transportation && expense.subcategory==="Transportation")||(insurance && expense.subcategory==="Insurance")||(debt && expense.subcategory==="Debt")||(personalcare && expense.subcategory==="Personalcare")||
+                        (savings && expense.subcategory==="Savings")||(investment && expense.subcategory==="Investment")||(education && expense.subcategory==="Education")||(gifts && expense.subcategory==="Gifts")||(miscelaneous && expense.subcategory==="Miscelaneous"))) 
+                        )?
                         <div key={expense._id} className="flex items-center gap-2 py-2 expense_right_section_element">
                             {getSymbolForSubcategory(expense.subcategory)}
                             <div className="w-full flex items-center justify-between expense_right_section_element_right">
