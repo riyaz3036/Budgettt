@@ -132,25 +132,31 @@ const Home = () =>{
         });
     });
 
+    
     //Calculating weekly expenses for bar chart(input)
     let weeklySums = [];
+    const currentDate = new Date();
+
+    function formatingDate(date, index) {
+        return date.toISOString().split('T')[0];
+    }
 
         // Calculate start and end dates for each day of the week
         for (let i = 0; i < 7; i++) {
-        const startDate = new Date();
-        startDate.setDate(startDate.getDate() - i);
-        const endDate = new Date(startDate);
-        endDate.setDate(endDate.getDate() + 1);
+
+            const date = new Date(currentDate);
+            date.setDate(currentDate.getDate() - i);
+        
+        const formattedCurrentDate = formatingDate(date, i);
 
         // Find expenses for the current day
         const expensesForDay = groupedExpenses.find(group => {
-            const groupDate = new Date(group.date);
-            return groupDate >= startDate && groupDate < endDate;
+            return group.date===formattedCurrentDate;
         });
 
         // Initialize sums for the current day
         let daySum = {
-            date: formatDate(startDate), // Format the date as needed
+            date: formatDate(formattedCurrentDate), // Format the date as needed
             essential: 0,
             nonessential: 0,
             miscellaneous: 0
@@ -175,10 +181,11 @@ const Home = () =>{
 
         // Push the day's sum object into the weeklySums array
         weeklySums.push(daySum);
+    
         }
 
 
-    
+
 
     //to get different symbols for different sub categories
     function getSymbolForSubcategory(subcategory) {
