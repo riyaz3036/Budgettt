@@ -20,8 +20,7 @@
 
 
 ## A sneak peek into what we have here!
-
-<!-- Visit the website at: https://budgettt.vercel.app/ -->
+Visit the website at: https://budgettt.vercel.app/
 
 ### Home Page
 <img src="readmeassets/home.png"  >
