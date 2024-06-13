@@ -1,9 +1,22 @@
 <p align="center"><img src="readmeassets/logo.png" ></p>
 
 ### Budgettt is a one stop place to track all your daily expenses
-
+- Add various categories of expenses in your day to day life
+- Create an account to get started now!
 
 ### Features
+- You can add an Expense of specific category (essential, non-essential and miscelaneous)
+- An Expense is also categorized based on subcategory (food,utilities,entertainment etc)
+- One can view all the list of expenses added
+- Expenses of the current month and week are represented graphically (for each category)
+- with the help of the filters present, one can also filter the expenses based on category and sub categories
+
+
+### Highlights
+
+- well structured, readable, and maintainable code
+- Responsive design principles are implemented to fit in all devices
+- All edge cases are perfectly handled in the logic
 
 
 ## A sneak peek into what we have here!
@@ -11,8 +24,10 @@
 <!-- Visit the website at: https://budgettt.vercel.app/ -->
 
 ### Home Page
-
 <img src="readmeassets/home.png"  >
+
+### Add Expense Page
+<img src="readmeassets/add.png">
 
 
 
