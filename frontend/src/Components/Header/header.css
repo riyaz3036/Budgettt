@@ -4,3 +4,10 @@
    top: 0;
    z-index: 100;
 }
+.user_tooltip{
+    background-color: rgba(250,250,250);
+}
+.user_img:hover + .user_tooltip {
+    opacity: 1;
+    pointer-events: auto;
+}

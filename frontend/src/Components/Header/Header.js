@@ -30,7 +30,12 @@ const Header = () => {
                 {
                   user?
                   <div className="flex items-center justify-center gap-4">
-                    <img className="h-7 w-7" src={userimg}/>
+                    <div className="relative">
+                      <img className="h-7 w-7 cursor-pointer user_img" src={userimg}/>
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 p-2 rounded-md opacity-0 transition-opacity duration-300 pointer-events-none user_tooltip">
+                          <p className="text-cente text-base font-medium">Hi {user.username}!!</p>
+                      </div>
+                    </div>
                     <button className="bg-black text-white rounded py-1 px-4" onClick={logout}>Logout</button>
                   </div>
                   :

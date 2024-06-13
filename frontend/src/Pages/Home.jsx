@@ -329,31 +329,31 @@ return (
                             },
                             scales: {
                                 x: {
-                                    stacked: true,// Ensure bars are stacked
+                                    stacked: true,// making the bars stacked
                                     grid: {
-                                        display: false // Disable vertical grid lines
+                                        display: false // disable vertical grid lines
                                     },
                                     ticks: {
                                         font: {
-                                            size: 10 // Set font size for x-axis labels
+                                            size: 10 
                                         },
                                         color: '#94A3B8'
                                     }
                                 },
                                 y: {
                                     beginAtZero: true,
-                                    stacked: true, // Ensure bars are stacked
+                                    stacked: true, 
                                     grid: {
-                                        color: 'rgba(0, 0, 0, 0.25)', // Set grid lines to gray
+                                        color: 'rgba(0, 0, 0, 0.25)',
                                         lineWidth: 0.5
                                     },
                                     ticks: {
                                         font: {
-                                            size: 10 // Set font size for x-axis labels
+                                            size: 10 
                                         },
                                         color: '#94A3B8',
                                         callback: function(value, index, values) {
-                                            return '₹' + value; // Add rupee symbol before each value
+                                            return '₹' + value; 
                                         },
                                         stepSize: 250
                                     }

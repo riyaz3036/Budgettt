@@ -45,3 +45,17 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+
+/* Screen size <= 768px (Mobile Phones)*/
+@media (max-width: 768px) {
+    .input_feild input,.input_feild select{
+        height: 30px;
+        width: 250px;
+        font-size: 16px;
+   }
+
+   .add{
+    height: 30px;
+    } 
+}
